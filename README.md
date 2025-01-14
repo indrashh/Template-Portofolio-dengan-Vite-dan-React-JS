@@ -44,7 +44,7 @@ Template portofolio ini dibuat menggunakan [Vite](https://vitejs.dev/) dan [Reac
 1. **Clone repository ini**
 
    ```bash
-   git clone https://github.com/username/repository-name.git
+   git clone https://github.com/habstrakT808/Template-Portofolio-dengan-Vite-dan-React-JS.git
    cd repository-name
    ```
 
