@@ -7,3 +7,10 @@
     font-family: "Poppins", serif;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #ae2222; /* ganti sesuai warna yang kamu mau */
+}

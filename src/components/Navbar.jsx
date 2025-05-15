@@ -1,79 +1,107 @@
 import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Home, Info, Settings, ImageIcon, Send, Menu, X } from "lucide-react";
 
-const Navbar = () => {
-  const [show, setShow] = useState(false);
-  const [scroll, setScroll] = useState(false);
-  const handleClick = () => {
-    setShow(!show);
-    // console.log(show);
-  };
-
-  let menuActive = show ? "left-0" : "-left-full";
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 5) {
-        setScroll(true);
-        setShow(false);
-      } else {
-        setScroll(false);
-      }
-    });
-  });
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  let scrollActive = scroll ? "py-6 bg-white shadow" : "py-4";
+  const bgClass = scrolled
+    ? "backdrop-blur-md bg-white/70 shadow-md"
+    : "bg-transparent";
+
+  const links = [
+    { href: "#homepage", label: "Home", icon: <Home className="w-5 h-5" /> },
+    { href: "#about", label: "About", icon: <Info className="w-5 h-5" /> },
+    {
+      href: "#services",
+      label: "Services",
+      icon: <Settings className="w-5 h-5" />,
+    },
+    {
+      href: "#proyek",
+      label: "Projects",
+      icon: <ImageIcon className="w-5 h-5" />,
+    },
+    { href: "#contact", label: "Contact", icon: <Send className="w-5 h-5" /> },
+  ];
 
   return (
-    <div className={`navbar fixed w-full transition-all ${scrollActive}`}>
-      <div className="container mx-auto px-4">
-        <div className="navbar-box flex items-center justify-between">
-          <div className="logo">
-            <h1 className="sm:text-2xl text-xl font-bold">Nama Anda.</h1>
-          </div>
-          <ul
-            className={`flex lg:gap-12 md:static md:flex-row md:shadow-none md:bg-transparent md:w-auto md:h-full md:translate-y-0 md:text-black md:p-0 md:m-0 md:transition-none gap-8 fixed ${menuActive} top-1/2 -translate-y-1/2 flex-col px-8 py-6 rounded shadow-lg shadow-slate-300 bg-sky-400 font-bold text-white transition-all`}
-          >
-            <li className="flex items-center gap-3">
-              <i className="ri-home-2-line text-3xl md:hidden block"></i>
-              <a href="#homepage" className="font-medium opacity-75">
-                Beranda
-              </a>
-            </li>
-            <li className="flex items-center gap-3">
-              <i className="ri-information-line text-3xl md:hidden block"></i>
-              <a href="#about" className="font-medium opacity-75">
-                Tentang Kami
-              </a>
-            </li>
-            <li className="flex items-center gap-3">
-              <i className="ri-settings-3-line text-3xl md:hidden block"></i>
-              <a href="#services" className="font-medium opacity-75">
-                Layanan
-              </a>
-            </li>
-            <li className="flex items-center gap-3">
-              <i className="ri-image-line text-3xl md:hidden block"></i>
-              <a href="#proyek" className="font-medium opacity-75">
-                Proyek
-              </a>
-            </li>
-          </ul>
-          <div className="social flex items-center gap-2">
+    <motion.nav
+      className={`fixed w-full z-50 transition-all ${bgClass}`}
+      initial={{ y: -80 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <h1 className="text-xl sm:text-2xl font-extrabold text-violet-600">
+          Indra Agustyawan.
+        </h1>
+        <div className="hidden md:flex space-x-8">
+          {links.map((link) => (
             <a
-              href="#social"
-              className="bg-sky-400 px-5 py-2 rounded-full text-white font-bold hover:bg-sky-500 transition-all"
+              key={link.href}
+              href={link.href}
+              className="flex items-center gap-2 font-medium text-gray-700 hover:text-violet-600 transition"
             >
-              Social Media
+              {link.icon}
+              {link.label}
             </a>
-            <i
-              className="ri-menu-3-line text-3xl md:hidden block"
-              onClick={handleClick}
-            ></i>
-          </div>
+          ))}
+        </div>
+        <div className="md:hidden">
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-2 rounded-md text-gray-700 hover:text-violet-600 transition"
+          >
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
-    </div>
-  );
-};
 
-export default Navbar;
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50"
+            initial={{ x: 300 }}
+            animate={{ x: 0 }}
+            exit={{ x: 300 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <div className="flex flex-col mt-16 space-y-6 px-6">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 text-lg font-medium text-gray-700 hover:text-violet-600 transition"
+                >
+                  {link.icon}
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
+  );
+}

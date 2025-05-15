@@ -1,197 +1,117 @@
-import HeroImage from "../assets/images/hero.svg";
-import AboutImage from "../assets/images/about.svg";
-import Proyek1 from "../assets/images/proyek-1.webp";
-import Proyek2 from "../assets/images/proyek-2.webp";
-import Proyek3 from "../assets/images/proyek-3.webp";
-import Proyek4 from "../assets/images/proyek-4.webp";
-import Proyek5 from "../assets/images/proyek-5.webp";
 import React from "react";
+import { motion } from "framer-motion";
+import { Eye } from "lucide-react";
+import DataInput from "../assets/images/data_input.svg";
+import OrganizeData from "../assets/images/organizing_data.svg";
+import Services from "./Services";
+import Project from "../components/Project";
+import Contact from "./Contact";
 
-function HomePage() {
+// Shared variants for consistency
+const sectionVariants = {
+  hidden: { opacity: 0, y: 60, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+function HeroSection() {
   return (
-    <div className="homepage pb-10">
-      <div className="container mx-auto px-4">
-        <div className="hero grid md:grid-cols-2 grid-cols-1 items-center gap-20 pt-32">
-          <div className="box">
-            <h1 className="lg:text-5xl/tight text-3xl font-medium mb-7">
-              Template Portofolio Untuk{" "}
-              <span className="font-bold text-sky-400 underline">
-                Nama Anda
-              </span>
-            </h1>
-            <p className="text-base/8 mb-7">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut
-              necessitatibus illo eveniet eos illum, aperiam perspiciatis
-              corporis quos quisquam consectetur veritatis tenetur sint optio
-              vero modi culpa? Provident, quos ut?
-            </p>
-            <a
-              href="#"
-              className="bg-sky-400 hover:bg-slate-500 transition-all py-2 px-4 text-white shadow rounded-full"
-            >
-              Tentang Kami <i className="ri-eye-line ms-1"></i>
-            </a>
-          </div>
-          <div className="box">
-            <img
-              src={HeroImage}
-              alt="Hero Image"
-              className="md:w-full w-[400px] mx-auto md:m-0"
-            />
-          </div>
-        </div>
-        <div
-          className="about grid md:grid-cols-2 grid-cols-1 items-center md:gap-20 gap-10 md:pt-20 pt-32"
-          id="about"
+    <motion.section
+      id="homepage"
+      className="hero relative overflow-hidden grid md:grid-cols-2 grid-cols-1 items-center gap-20 px-6 bg-gradient-to-br from-white to-violet-50 min-h-screen"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.4 }}
+      variants={sectionVariants}
+    >
+      <div className="absolute -top-16 -left-16 w-64 h-64 bg-violet-200 opacity-40 rounded-full" />
+      <div className="absolute top-1/2 -right-20 w-56 h-56 bg-violet-300 opacity-30 rounded-full transform translate-y-1/2" />
+      <div className="absolute bottom-10 left-1/3 w-48 h-48 bg-violet-200 opacity-30 rounded-full" />
+
+      {/* Text */}
+      <motion.div
+        className="flex flex-col justify-center z-10 px-4"
+        variants={sectionVariants}
+      >
+        <h1 className="text-4xl lg:text-6xl font-semibold mb-6 leading-tight">
+          Professional{" "}
+          <span className="text-violet-600 font-bold">Virtual Assistant</span>{" "}
+          for Precise <br />& Efficient Data Entry
+        </h1>
+        <p className="text-lg text-gray-700 mb-8">
+          I streamline your operations with meticulous accuracy, combining
+          technical expertise and administrative efficiency to empower your
+          business.
+        </p>
+        <motion.a
+          href="#about"
+          className="self-start inline-flex items-center bg-violet-600 hover:bg-purple-800 transition transform px-6 py-3 rounded-full text-white font-medium shadow-md"
+          variants={sectionVariants}
+          whileHover={{ scale: 1.05 }}
         >
-          <div className="box md:order-1 order-2">
-            <img
-              src={AboutImage}
-              alt="About Image"
-              className="lg:w-[500px] w-[400px] md:m-0 mx-auto"
-            />
-          </div>
-          <div className="box md:order-2 order-1">
-            <h1 className="lg:text-5xl/tight text-3xl font-medium mb-7">
-              Template Portofolio Untuk{" "}
-              <span className="font-bold text-sky-400 underline">
-                Nama Anda
-              </span>
-            </h1>
-            <p className="text-base/loose">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut
-              necessitatibus illo eveniet eos illum, aperiam perspiciatis
-              corporis quos quisquam consectetur veritatis tenetur sint optio
-              vero modi culpa? Provident, quos ut?
-            </p>
-          </div>
-        </div>
+          About Me <Eye className="ms-2 w-5 h-5" />
+        </motion.a>
+      </motion.div>
 
-        <div className="services pt-32" id="services">
-          <h1 className="text-center text-5xl/tight text-3xl font-medium mb-2">
-            Layanan
-          </h1>
-          <p className="text-center">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
-          <div className="services-box pt-12 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-            <div className="box bg-sky-400 rounded-lg shadow p-4">
-              <i className="ri-number-1 text-3xl text-white"></i>
-              <h3 className="text-xl font-bold text-white mt-6 mb-2">
-                Service Name 1
-              </h3>
-              <p className="text-white text-base/loose">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis
-                minima error, obcaecati amet repudiandae ipsum! Reiciendis
-                libero iste officiis, consectetur ut ratione modi, excepturi
-                commodi doloremque doloribus qui iure facere.
-              </p>
-            </div>
-            <div className="box bg-sky-400 rounded-lg shadow p-4">
-              <i className="ri-number-2 text-3xl text-white"></i>
-              <h3 className="text-xl font-bold text-white mt-6 mb-2">
-                Service Name 2
-              </h3>
-              <p className="text-white text-base/loose">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis
-                minima error, obcaecati amet repudiandae ipsum! Reiciendis
-                libero iste officiis, consectetur ut ratione modi, excepturi
-                commodi doloremque doloribus qui iure facere.
-              </p>
-            </div>
-            <div className="box bg-sky-400 rounded-lg shadow p-4">
-              <i className="ri-number-3 text-3xl text-white"></i>
-              <h3 className="text-xl font-bold text-white mt-6 mb-2">
-                Service Name 3
-              </h3>
-              <p className="text-white text-base/loose">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis
-                minima error, obcaecati amet repudiandae ipsum! Reiciendis
-                libero iste officiis, consectetur ut ratione modi, excepturi
-                commodi doloremque doloribus qui iure facere.
-              </p>
-            </div>
-          </div>
-
-          <div className="proyek pt-32" id="proyek">
-            <h1 className="text-center text-5xl/tight text-3xl font-medium mb-2">
-              Proyek
-            </h1>
-            <p className="text-center">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <div className="proyek-box pt-12 grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-              <div className="box p-2 bg-white shadow">
-                <img
-                  src={Proyek1}
-                  alt=" Proyek Image"
-                  className="w-full h-[220px]"
-                />
-                <h3 className="text-xl font-bold  mt-6 mb-2">Proyek Name 1</h3>
-                <p className=" text-base/loose">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia maiores nostrum animi odit eius sed magni asperiores
-                  tenetur, similique, dolore omnis perspiciatis.
-                </p>
-              </div>
-              <div className="box p-2 bg-white shadow">
-                <img
-                  src={Proyek2}
-                  alt=" Proyek Image"
-                  className="w-full h-[220px]"
-                />
-                <h3 className="text-xl font-bold  mt-6 mb-2">Proyek Name 2</h3>
-                <p className=" text-base/loose">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia maiores nostrum animi odit eius sed magni asperiores
-                  tenetur, similique, dolore omnis perspiciatis.
-                </p>
-              </div>
-              <div className="box p-2 bg-white shadow">
-                <img
-                  src={Proyek3}
-                  alt=" Proyek Image"
-                  className="w-full h-[220px]"
-                />
-                <h3 className="text-xl font-bold  mt-6 mb-2">Proyek Name 3</h3>
-                <p className=" text-base/loose">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia maiores nostrum animi odit eius sed magni asperiores
-                  tenetur, similique, dolore omnis perspiciatis.
-                </p>
-              </div>
-              <div className="box p-2 bg-white shadow">
-                <img
-                  src={Proyek4}
-                  alt=" Proyek Image"
-                  className="w-full h-[220px]"
-                />
-                <h3 className="text-xl font-bold  mt-6 mb-2">Proyek Name 4</h3>
-                <p className=" text-base/loose">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia maiores nostrum animi odit eius sed magni asperiores
-                  tenetur, similique, dolore omnis perspiciatis.
-                </p>
-              </div>
-              <div className="box p-2 bg-white shadow">
-                <img
-                  src={Proyek5}
-                  alt=" Proyek Image"
-                  className="w-full h-[220px]"
-                />
-                <h3 className="text-xl font-bold  mt-6 mb-2">Proyek Name 5</h3>
-                <p className=" text-base/loose">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Officia maiores nostrum animi odit eius sed magni asperiores
-                  tenetur, similique, dolore omnis perspiciatis.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      {/* Image */}
+      <motion.div className="z-10" variants={sectionVariants}>
+        <img
+          src={DataInput}
+          alt="Data entry illustration"
+          className="md:w-[550px] w-[450px] mx-auto"
+        />
+      </motion.div>
+    </motion.section>
   );
 }
 
-export default HomePage;
+function AboutSection() {
+  return (
+    <motion.section
+      id="about"
+      className="about grid md:grid-cols-2 grid-cols-1 items-center gap-10 md:gap-20 py-20 bg-white"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.4 }}
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.2 } },
+      }}
+    >
+      <motion.div className="flex justify-center" variants={sectionVariants}>
+        <img
+          src={OrganizeData}
+          alt="Organizing data illustration"
+          className="md:w-[500px] w-[400px]"
+        />
+      </motion.div>
+      <motion.div className="space-y-6 px-4" variants={sectionVariants}>
+        <h2 className="text-4xl font-semibold">
+          <span className="text-violet-600">About Me</span>
+        </h2>
+        <p className="text-lg text-gray-700 leading-relaxed">
+          Hello, I’m Indra, a seasoned Virtual Assistant specializing in data
+          entry and administrative support. With a foundation in Informatics and
+          honed web development skills, I deliver precise, impactful results to
+          drive your success.
+        </p>
+      </motion.div>
+    </motion.section>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <div className="homepage bg-violet-50">
+      <HeroSection />
+      <AboutSection />
+      <Services />
+      <Project />
+      <Contact />
+    </div>
+  );
+}

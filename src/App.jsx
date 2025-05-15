@@ -1,10 +1,11 @@
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
+import "./index.css"; // atau './App.css' jika kamu taruh di sana
 
 function App() {
   return (
-    <div>
+    <div className="App">
       {/* Navbar */}
       <Navbar />
 
