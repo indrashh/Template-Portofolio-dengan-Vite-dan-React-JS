@@ -94,10 +94,15 @@ function AboutSection() {
           <span className="text-violet-600">About Me</span>
         </h2>
         <p className="text-lg text-gray-700 leading-relaxed">
-          Hello, I’m Indra, a seasoned Virtual Assistant specializing in data
-          entry and administrative support. With a foundation in Informatics and
-          honed web development skills, I deliver precise, impactful results to
-          drive your success.
+          Hello! I’m Indra—an entry-level Virtual Assistant specializing in data
+          entry and administrative support, backed by a 4th-semester Computer
+          Science background and hands-on web development skills. I’m
+          detail-oriented and tech-savvy, whether it’s converting PDF invoices
+          into clean Excel sheets, organizing large datasets, or managing your
+          calendar and emails. I adapt quickly to new tools and processes, and
+          I’m committed to delivering accurate, organized results that help your
+          business run smoothly. Let’s collaborate and turn your data into
+          actionable insights!
         </p>
       </motion.div>
     </motion.section>
