@@ -20,7 +20,7 @@ export default function Project() {
 
   const projects = [
     {
-      image: Proyek1,
+      image: "./data_entry.png",
       title: "Data Entry & Spreadsheet Management",
       desc: "Automated data input app with spreadsheet features and AI assistance.",
     },

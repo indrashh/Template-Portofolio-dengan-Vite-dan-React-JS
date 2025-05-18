@@ -40,7 +40,7 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <h1 className="text-xl sm:text-2xl font-extrabold text-violet-600">
+        <h1 className="text-xl sm:text-2xl font-extrabold">
           Indra Agustyawan.
         </h1>
         <div className="hidden md:flex space-x-8">
