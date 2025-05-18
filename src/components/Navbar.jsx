@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Home, Info, Settings, ImageIcon, Send, Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -33,12 +32,7 @@ export default function Navbar() {
   ];
 
   return (
-    <motion.nav
-      className={`fixed w-full z-50 transition-all ${bgClass}`}
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <nav className={`fixed w-full z-50 transition-all ${bgClass}`}>
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <h1 className="text-xl sm:text-2xl font-extrabold">
           Indra Agustyawan.
@@ -68,41 +62,24 @@ export default function Navbar() {
         </button>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
-          />
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="fixed inset-0 z-50 flex flex-col bg-white pt-20 pb-6 px-6 space-y-4 md:hidden"
-            initial={{ y: -300 }}
-            animate={{ y: 0 }}
-            exit={{ y: -300 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
+      {/* Simple Mobile Menu */}
+      {open && (
+        <div className="md:hidden bg-white shadow-md">
+          <div className="flex flex-col px-4 py-4 space-y-4">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 text-lg font-medium text-gray-700 hover:text-violet-600 transition"
+                className="flex items-center gap-2 text-lg font-medium text-gray-700 hover:text-violet-600"
               >
                 {link.icon}
                 {link.label}
               </a>
             ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }
