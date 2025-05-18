@@ -38,14 +38,13 @@ function HeroSection() {
         variants={sectionVariants}
       >
         <h1 className="text-4xl lg:text-6xl font-semibold mb-6 leading-tight">
-          Professional{" "}
+          Reliable{" "}
           <span className="text-violet-600 font-bold">Virtual Assistant</span>{" "}
           for Precise <br />& Efficient Data Entry
         </h1>
         <p className="text-lg text-gray-700 mb-8">
-          I streamline your operations with meticulous accuracy, combining
-          technical expertise and administrative efficiency to empower your
-          business.
+          I streamline your workflow with accuracy and efficiency—so you can
+          focus on what matters most.
         </p>
         <motion.a
           href="#about"
