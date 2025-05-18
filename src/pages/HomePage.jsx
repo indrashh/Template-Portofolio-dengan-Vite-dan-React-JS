@@ -22,12 +22,13 @@ function HeroSection() {
   return (
     <motion.section
       id="homepage"
-      className="hero relative overflow-hidden grid md:grid-cols-2 grid-cols-1 items-center gap-20 px-6 bg-gradient-to-br from-white to-violet-50 min-h-screen"
+      className="hero pt-24 md:pt-0 relative overflow-hidden grid md:grid-cols-2 grid-cols-1 items-center gap-20 px-6 bg-gradient-to-br from-white to-violet-50 min-h-screen"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.4 }}
       variants={sectionVariants}
     >
+      {/* Background Shapes */}
       <div className="absolute -top-16 -left-16 w-64 h-64 bg-violet-200 opacity-40 rounded-full" />
       <div className="absolute top-1/2 -right-20 w-56 h-56 bg-violet-300 opacity-30 rounded-full transform translate-y-1/2" />
       <div className="absolute bottom-10 left-1/3 w-48 h-48 bg-violet-200 opacity-30 rounded-full" />
