@@ -7,15 +7,14 @@ import Services from "./Services";
 import Project from "../components/Project";
 import Contact from "./Contact";
 
-// Shared variants for consistency
-const sectionVariants = {
-  hidden: { opacity: 0, y: 60, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
+// Animation variants
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.2, ease: "easeOut" } },
+};
+const item = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6 } },
 };
 
 function HeroSection() {
@@ -25,18 +24,19 @@ function HeroSection() {
       className="hero pt-24 md:pt-0 relative overflow-hidden grid md:grid-cols-2 grid-cols-1 items-center gap-20 px-6 bg-gradient-to-br from-white to-violet-50 min-h-screen"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.4 }}
-      variants={sectionVariants}
+      viewport={{ once: false, amount: 0.6 }}
+      variants={container}
     >
       {/* Background Shapes */}
       <div className="absolute -top-16 -left-16 w-64 h-64 bg-violet-200 opacity-40 rounded-full" />
       <div className="absolute top-1/2 -right-20 w-56 h-56 bg-violet-300 opacity-30 rounded-full transform translate-y-1/2" />
       <div className="absolute bottom-10 left-1/3 w-48 h-48 bg-violet-200 opacity-30 rounded-full" />
 
-      {/* Text */}
+      {/* Text & Button */}
       <motion.div
         className="flex flex-col justify-center z-10 px-4"
-        variants={sectionVariants}
+        variants={item}
+        style={{ willChange: "transform, opacity" }}
       >
         <h1 className="text-4xl lg:text-6xl font-semibold mb-6 leading-tight">
           Reliable{" "}
@@ -44,23 +44,26 @@ function HeroSection() {
           for Precise <br />
           Data Entry & Python Web Scraping
         </h1>
-        <p className="text-lg text-gray-700 mb-8 ">
+        <p className="text-lg text-gray-700 mb-8">
           I streamline your workflow with accuracy and efficiency—so you can
           focus on what matters most.
         </p>
-
         <motion.a
           href="#about"
           className="self-start inline-flex items-center bg-violet-600 hover:bg-purple-800 transition transform px-6 py-3 rounded-full text-white font-medium shadow-md"
-          variants={sectionVariants}
+          variants={item}
           whileHover={{ scale: 1.05 }}
         >
           About Me <Eye className="ms-2 w-5 h-5" />
         </motion.a>
       </motion.div>
 
-      {/* Image */}
-      <motion.div className="z-10" variants={sectionVariants}>
+      {/* Illustration */}
+      <motion.div
+        className="z-10"
+        variants={item}
+        style={{ willChange: "transform, opacity" }}
+      >
         <img
           src={DataInput}
           alt="Data entry illustration"
@@ -84,14 +87,14 @@ function AboutSection() {
         visible: { transition: { staggerChildren: 0.2 } },
       }}
     >
-      <motion.div className="flex justify-center" variants={sectionVariants}>
+      <motion.div className="flex justify-center" variants={item}>
         <img
           src={OrganizeData}
           alt="Organizing data illustration"
           className="md:w-[500px] w-[400px]"
         />
       </motion.div>
-      <motion.div className="space-y-6 px-4" variants={sectionVariants}>
+      <motion.div className="space-y-6 px-4" variants={item}>
         <h2 className="text-4xl font-semibold">
           <span className="text-violet-600">About Me</span>
         </h2>
