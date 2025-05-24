@@ -21,7 +21,7 @@ export default function Project() {
 
   const projects = [
     {
-      title: "Accurate PDF to Spreadsheet Conversion – Medical Data",
+      title: "PDF to Spreadsheet Conversion – Medical Data",
       desc: "Converted a complex pharmaceutical purchase record from PDF to a clean, organized Excel spreadsheet. The document included multiple medications with product codes, quantities, unit prices, and total costs.",
       image: "./img/dataEntryMedical.svg",
       pdf: pdfMedical,
