@@ -41,12 +41,14 @@ function HeroSection() {
         <h1 className="text-4xl lg:text-6xl font-semibold mb-6 leading-tight">
           Reliable{" "}
           <span className="text-violet-600 font-bold">Virtual Assistant</span>{" "}
-          for Precise <br />& Efficient Data Entry
+          for Precise <br />
+          Data Entry & Python Web Scraping
         </h1>
-        <p className="text-lg text-gray-700 mb-8">
+        <p className="text-lg text-gray-700 mb-8 ">
           I streamline your workflow with accuracy and efficiency—so you can
           focus on what matters most.
         </p>
+
         <motion.a
           href="#about"
           className="self-start inline-flex items-center bg-violet-600 hover:bg-purple-800 transition transform px-6 py-3 rounded-full text-white font-medium shadow-md"
@@ -94,15 +96,14 @@ function AboutSection() {
           <span className="text-violet-600">About Me</span>
         </h2>
         <p className="text-lg text-gray-700 leading-relaxed">
-          Hello! I’m Indra—an entry-level Virtual Assistant specializing in data
-          entry and administrative support, backed by a 4th-semester Computer
-          Science background and hands-on web development skills. I’m
-          detail-oriented and tech-savvy, whether it’s converting PDF invoices
-          into clean Excel sheets, organizing large datasets, or managing your
-          calendar and emails. I adapt quickly to new tools and processes, and
-          I’m committed to delivering accurate, organized results that help your
-          business run smoothly. Let’s collaborate and turn your data into
-          actionable insights!
+          Hello! I’m Indra—an entry-level Virtual Assistant and Data Specialist
+          with a 4th-semester Computer Science background and web development
+          experience. I handle precise data entry, Python-based web scraping,
+          and a full range of administrative support—from organizing large
+          datasets to managing your calendar and emails. Detail-oriented and
+          tech-savvy, I adapt quickly to new tools and processes, ensuring
+          accurate, organized results that help your business run smoothly.
+          Let’s collaborate and streamline your workflow!
         </p>
       </motion.div>
     </motion.section>

@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowRight } from "lucide-react";
-import Proyek1 from "../assets/images/proyek-1.webp";
-import Proyek2 from "../assets/images/proyek-2.webp";
-import Proyek3 from "../assets/images/proyek-3.webp";
+import { X, ArrowRight, Download } from "lucide-react";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -18,21 +15,34 @@ export default function Project() {
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  // pdf file
+  const pdfUrlOne = "/pdf/country-data-scraping.pdf";
+  const pdfMedical = "/pdf/medic-invoice.pdf";
+
   const projects = [
     {
-      image: "./data_entry.png",
-      title: "Data Entry & Spreadsheet Management",
-      desc: "Automated data input app with spreadsheet features and AI assistance.",
+      title: "Accurate PDF to Spreadsheet Conversion – Medical Data",
+      desc: "Converted a complex pharmaceutical purchase record from PDF to a clean, organized Excel spreadsheet. The document included multiple medications with product codes, quantities, unit prices, and total costs.",
+      image: "./img/dataEntryMedical.svg",
+      pdf: pdfMedical,
     },
     {
-      image: Proyek2,
-      title: "Admin Support Dashboard",
-      desc: "Interactive dashboard for managing tasks, scheduling, and emails efficiently.",
+      title: "Data Scraping & CSV-to-Excel Automation with Python",
+      desc: "In this project, I scraped country data (name, capital, population) from a public resource using Python, and exported the results into both CSV and Excel formats.",
+      image: "./img/data-scrapingg.svg",
+      pdf: pdfUrlOne,
     },
     {
-      image: Proyek3,
       title: "Research & Analytics Tool",
       desc: "Web-based research tool with data visualization and insights generation.",
+      image: "https://via.placeholder.com/600x400?text=Research+Tool",
+      pdf: pdfUrlOne,
+    },
+    {
+      title: "Web Scraper Utility",
+      desc: "Custom scraper for extracting structured data from multiple websites.",
+      image: "https://via.placeholder.com/600x400?text=Web+Scraper+Utility",
+      pdf: pdfUrlOne,
     },
   ];
 
@@ -49,28 +59,29 @@ export default function Project() {
   return (
     <section id="proyek" className="relative py-32 px-4 overflow-hidden">
       {/* Decorative Blobs */}
-      <div className="absolute -top-10 -left-10 w-72 h-72 bg-violet-200 opacity-20 rounded-full filter blur-3xl"></div>
-      <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-violet-200 opacity-20 rounded-full filter blur-2xl"></div>
+      <div className="absolute -top-10 -left-10 w-72 h-72 bg-violet-200 opacity-20 rounded-full filter blur-3xl" />
+      <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-violet-200 opacity-20 rounded-full filter blur-2xl" />
 
+      {/* Header with full PDF download */}
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h2 className="text-4xl lg:text-6xl font-bold text-violet-600 mb-4">
-          My Projects
+          My Projects Showcase
         </h2>
-        <p className="text-gray-700 text-lg">
+        <p className="text-gray-700 text-lg mb-8">
           A showcase of projects that demonstrate my skills in data entry,
           administration, and research.
         </p>
       </div>
 
+      {/* Project Grid */}
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 max-w-6xl mx-auto">
-        {projects.map((proyek, index) => (
+        {projects.map((proyek, idx) => (
           <motion.div
-            key={index}
+            key={idx}
             className="bg-white rounded-2xl shadow-xl overflow-hidden"
-            custom={index}
+            custom={idx}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }} // ← supaya animasi bisa ulang
             variants={cardVariants}
             whileHover={{
               scale: 1.05,
@@ -89,20 +100,29 @@ export default function Project() {
               <p className="text-gray-600 mb-4 leading-relaxed">
                 {proyek.desc}
               </p>
-              <button
-                onClick={() => openModal(proyek.image)}
-                className="inline-flex items-center text-violet-600 font-medium hover:underline"
-              >
-                View Demo <ArrowRight className="w-5 h-5 ms-2" />
-              </button>
+              <div className="flex items-center justify-between">
+                <a
+                  href={proyek.pdf}
+                  download
+                  className="inline-flex items-center text-gray-700 font-medium hover:underline"
+                >
+                  <Download className="w-5 h-5 mr-1" /> Download PDF
+                </a>
+                <button
+                  onClick={() => openModal(proyek.image)}
+                  className="inline-flex items-center text-violet-600 font-medium hover:underline"
+                >
+                  View <ArrowRight className="w-5 h-5 ml-2" />
+                </button>
+              </div>
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Modal */}
+      {/* Modal for image preview */}
       <AnimatePresence>
-        {showModal && selectedImage && (
+        {showModal && (
           <motion.div
             className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
             onClick={closeModal}

@@ -1,13 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Database,
-  FileText,
-  Copy,
-  Activity,
-  File,
-  ArrowRight,
-} from "lucide-react";
+import { Database, FileText, Copy, Activity, File, Globe } from "lucide-react";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30, scale: 0.95 },
@@ -34,24 +27,26 @@ const serviceList = [
   },
   {
     id: 2,
-    title: "Virtual Admin Support",
+    title: "Web Scraping & Automated Data Collection",
     description:
-      "Email handling, scheduling, and other admin tasks to keep your operations running smoothly.",
-    icon: <Activity className="w-10 h-10 text-violet-600" />,
+      "Extract and collect structured data from websites and online sources using Python tools—efficiently and accurately.",
+    icon: <Globe className="w-10 h-10 text-violet-600" />,
+    highlight: true,
   },
   {
     id: 3,
-    title: "Web Research",
-    description:
-      "Reliable internet research with clear documentation and insights tailored to your needs.",
-    icon: <FileText className="w-10 h-10 text-violet-600" />,
-  },
-  {
-    id: 4,
     title: "File Conversion",
     description:
       "Convert documents (PDF, Word, Excel) quickly and accurately to your desired format.",
     icon: <File className="w-10 h-10 text-violet-600" />,
+    highlight: true,
+  },
+  {
+    id: 4,
+    title: "Web Research",
+    description:
+      "Reliable internet research with clear documentation and insights tailored to your needs.",
+    icon: <FileText className="w-10 h-10 text-violet-600" />,
   },
   {
     id: 5,
@@ -59,6 +54,13 @@ const serviceList = [
     description:
       "Fix duplicates, errors, and inconsistent formatting—ensuring your data is analysis-ready.",
     icon: <Copy className="w-10 h-10 text-violet-600" />,
+  },
+  {
+    id: 6,
+    title: "Virtual Admin Support",
+    description:
+      "Email handling, scheduling, and other admin tasks to keep your operations running smoothly.",
+    icon: <Activity className="w-10 h-10 text-violet-600" />,
   },
 ];
 
@@ -79,7 +81,7 @@ export default function Services() {
         <p className="text-lg text-gray-700">
           As a{" "}
           <span className="font-semibold text-violet-600">
-            Virtual Assistant Specialist in Data Entry
+            Virtual Assistant Specialist in Data Entry & Web Scraping
           </span>
           , I deliver reliable, efficient, and detail-focused services to help
           you stay organized and boost productivity.
@@ -90,7 +92,7 @@ export default function Services() {
         {serviceList.map((service, index) => (
           <motion.div
             key={service.id}
-            className="relative bg-white rounded-2xl p-6 shadow-lg overflow-hidden flex flex-col justify-between"
+            className="relative bg-white rounded-2xl p-6 shadow-lg overflow-visible flex flex-col justify-between"
             custom={index}
             initial="hidden"
             whileInView="visible"
@@ -99,8 +101,8 @@ export default function Services() {
             whileHover="hover"
           >
             {service.highlight && (
-              <div className="absolute -top-4 -right-4 bg-gradient-to-tr from-purple-500 to-indigo-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md">
-                SPECIALTY
+              <div className="absolute -top-4 -right-4 bg-gradient-to-tr from-purple-500 to-indigo-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md z-10">
+                Top Service
               </div>
             )}
             <div>
@@ -112,12 +114,6 @@ export default function Services() {
                 {service.description}
               </p>
             </div>
-            <motion.button
-              whileHover="hover"
-              className="mt-auto inline-flex items-center justify-center w-full py-2 bg-violet-600 text-white font-medium rounded-full hover:bg-violet-700 transition"
-            >
-              Learn More <ArrowRight className="ms-2 w-4 h-4" />
-            </motion.button>
           </motion.div>
         ))}
       </div>
@@ -128,7 +124,7 @@ export default function Services() {
           className="inline-block px-8 py-4 bg-violet-600 text-white rounded-full text-lg font-semibold hover:bg-violet-700 transition shadow-md"
           whileHover="hover"
         >
-          Hire Me as Your Data Entry Specialist
+          Organize Your Work Better with Tailored Assistance
         </motion.a>
       </div>
     </section>
