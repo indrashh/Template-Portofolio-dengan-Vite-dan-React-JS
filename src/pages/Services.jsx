@@ -8,7 +8,7 @@ const cardVariants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { delay: i * 0.3, duration: 0.8, ease: "easeOut" },
+    transition: { delay: i * 0.09, duration: 0.2, ease: "easeOut" },
   }),
   hover: {
     scale: 1.05,
