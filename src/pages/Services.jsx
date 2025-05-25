@@ -121,7 +121,7 @@ export default function Services() {
       <div className="mt-12 text-center relative z-10">
         <motion.a
           href="#contact"
-          className="inline-block px-8 py-4 bg-violet-600 text-white rounded-full text-lg font-semibold hover:bg-violet-700 transition shadow-md"
+          className="inline-block px-8 py-4 bg-violet-600 text-white rounded-full text-1xl font-semibold hover:bg-violet-700 transition shadow-md"
           whileHover="hover"
         >
           Let’s Organize Your Tasks with the Right Help

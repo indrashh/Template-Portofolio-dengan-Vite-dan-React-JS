@@ -7,7 +7,7 @@ const cardVariants = {
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.3, duration: 0.8, ease: "easeOut" },
+    transition: { delay: i * 0.2, duration: 0.8, ease: "easeOut" },
   }),
 };
 
@@ -15,34 +15,40 @@ export default function Project() {
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // pdf file
   const pdfUrlOne = "/pdf/country-data-scraping.pdf";
   const pdfMedical = "/pdf/medic-invoice.pdf";
 
-  const projects = [
+  const dataEntryProjects = [
     {
       title: "PDF to Spreadsheet Conversion – Medical Data",
       desc: "Converted a complex pharmaceutical purchase record from PDF to a clean, organized Excel spreadsheet. The document included multiple medications with product codes, quantities, unit prices, and total costs.",
       image: "./img/dataEntryMedical.svg",
       pdf: pdfMedical,
+      tags: ["Data Entry", "PDF Parsing", "Excel"],
     },
+  ];
+
+  const scrapingProjects = [
     {
       title: "Data Scraping & CSV-to-Excel Automation with Python",
       desc: "In this project, I scraped country data (name, capital, population) from a public resource using Python, and exported the results into both CSV and Excel formats.",
       image: "./img/data-scrapingg.svg",
       pdf: pdfUrlOne,
+      tags: ["Python", "Web Scraping", "Automation"],
     },
     {
       title: "Research & Analytics Tool",
-      desc: "Web-based research tool with data visualization and insights generation.",
+      desc: "Built a web tool to collect and visualize market data, aiding in quick insight generation and decision-making.",
       image: "https://via.placeholder.com/600x400?text=Research+Tool",
       pdf: pdfUrlOne,
+      tags: ["Analytics", "Web App", "Data Viz"],
     },
     {
       title: "Web Scraper Utility",
-      desc: "Custom scraper for extracting structured data from multiple websites.",
+      desc: "Developed a custom scraper that extracts structured data from multi-page sources efficiently.",
       image: "https://via.placeholder.com/600x400?text=Web+Scraper+Utility",
       pdf: pdfUrlOne,
+      tags: ["Scraper", "Python", "BeautifulSoup"],
     },
   ];
 
@@ -56,24 +62,11 @@ export default function Project() {
     setSelectedImage(null);
   };
 
-  return (
-    <section id="proyek" className="relative py-32 px-4 overflow-hidden">
-      {/* Decorative Blobs */}
-      <div className="absolute -top-10 -left-10 w-72 h-72 bg-violet-200 opacity-20 rounded-full filter blur-3xl" />
-      <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-violet-200 opacity-20 rounded-full filter blur-2xl" />
-
-      {/* Header with full PDF download */}
-      <div className="max-w-7xl mx-auto text-center mb-12">
-        <h2 className="text-4xl lg:text-6xl font-bold text-violet-600 mb-4">
-          My Projects Showcase
-        </h2>
-        <p className="text-gray-700 text-lg mb-8">
-          A showcase of projects that demonstrate my skills in data entry,
-          administration, and research.
-        </p>
-      </div>
-
-      {/* Project Grid */}
+  const renderProjectSection = (title, projects) => (
+    <div className="mb-20">
+      <h3 className="text-3xl font-bold text-violet-700 mb-8 text-center">
+        {title}
+      </h3>
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 max-w-6xl mx-auto">
         {projects.map((proyek, idx) => (
           <motion.div
@@ -94,9 +87,19 @@ export default function Project() {
               className="w-full h-56 object-cover"
             />
             <div className="p-6">
-              <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+              <h4 className="text-xl font-semibold text-gray-800 mb-2">
                 {proyek.title}
-              </h3>
+              </h4>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {proyek.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="bg-violet-100 text-violet-800 text-xs font-semibold px-2 py-1 rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
               <p className="text-gray-600 mb-4 leading-relaxed">
                 {proyek.desc}
               </p>
@@ -119,8 +122,51 @@ export default function Project() {
           </motion.div>
         ))}
       </div>
+    </div>
+  );
 
-      {/* Modal for image preview */}
+  return (
+    <section
+      id="proyek"
+      className="relative py-32 px-4 bg-gradient-to-br from-white to-violet-50 overflow-hidden"
+    >
+      {/* Decorative Blobs */}
+      <div className="absolute -top-10 -left-10 w-72 h-72 bg-violet-200 opacity-20 rounded-full filter blur-3xl" />
+      <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-violet-200 opacity-20 rounded-full filter blur-2xl" />
+
+      {/* Header */}
+      <div className="max-w-7xl mx-auto text-center mb-16">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl lg:text-6xl font-bold text-violet-600 mb-4"
+        >
+          My Projects Showcase
+        </motion.h2>
+        <p className="text-gray-700 text-lg">
+          Explore my work categorized by specialization to see how I deliver
+          results in both manual and automated data handling.
+        </p>
+      </div>
+
+      {/* Data Entry Section */}
+      {renderProjectSection("Data Entry Projects", dataEntryProjects)}
+
+      {/* Scraping Section */}
+      {renderProjectSection("Web & Data Scraping Projects", scrapingProjects)}
+
+      {/* CTA */}
+      <div className="text-center mt-12">
+        <a
+          href="#contact"
+          className="bg-violet-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-violet-700 transition"
+        >
+          Let's Work Together
+        </a>
+      </div>
+
+      {/* Modal */}
       <AnimatePresence>
         {showModal && (
           <motion.div
