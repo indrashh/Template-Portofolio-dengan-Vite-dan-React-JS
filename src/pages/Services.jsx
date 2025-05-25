@@ -124,7 +124,7 @@ export default function Services() {
           className="inline-block px-8 py-4 bg-violet-600 text-white rounded-full text-lg font-semibold hover:bg-violet-700 transition shadow-md"
           whileHover="hover"
         >
-          Organize Your Work Better with Tailored Assistance
+          Let’s Organize Your Tasks with the Right Help
         </motion.a>
       </div>
     </section>
